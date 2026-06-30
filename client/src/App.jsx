@@ -32,6 +32,7 @@ import Notifications from './pages/notifications/Notifications';
 import RoleBasedLayout from './layouts/RoleBasedLayout';
 
 // Analytics Imports
+import LandingPage from './pages/LandingPage';
 import AdminAnalytics from './pages/admin/analytics/AdminAnalytics';
 import ComplaintAnalytics from './pages/admin/analytics/ComplaintAnalytics';
 import OfficerPerformance from './pages/admin/analytics/OfficerPerformance';
@@ -47,7 +48,7 @@ const ProtectedRoute = ({ children }) => {
 const RoleBasedIndex = () => {
   const { user, loading } = useContext(AuthContext);
   if (loading) return <div>Loading...</div>;
-  if (!user) return <Navigate to="/login" />;
+  if (!user) return <LandingPage />;
   if (user.role === 'Admin') return <Navigate to="/admin/dashboard" />;
   if (user.role === 'Agent') return <Navigate to="/officer/dashboard" />;
   return <Navigate to="/my-complaints" />;
